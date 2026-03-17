@@ -5,50 +5,82 @@ export default function App() {
   const [nos, setNos] = useState(0);
   const [eles, setEles] = useState(0);
 
+  const adicionarPontos = (time, pontos) => {
+    if (time === 'nos') {
+      setNos(nos + pontos);
+    } else {
+      setEles(eles + pontos);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Marcador</Text>
+      <Text style={styles.titulo}>Marcador de Truco</Text>
 
-      {/* Time Nós */}
-      <View style={styles.timeContainer}>
+      {/* NÓS */}
+      <View style={styles.card}>
         <Text style={styles.nomeTime}>Nós</Text>
         <Text style={styles.pontos}>{nos}</Text>
 
-        <View style={styles.botoes}>
-          <TouchableOpacity
-            style={styles.botao}
-            onPress={() => setNos(nos - 1)}
-          >
+        <View style={styles.botoesLinha}>
+          <TouchableOpacity style={styles.botao} onPress={() => setNos(nos - 1)}>
             <Text style={styles.textoBotao}>-</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.botao}
-            onPress={() => setNos(nos + 1)}
-          >
+          <TouchableOpacity style={styles.botao} onPress={() => setNos(nos + 1)}>
             <Text style={styles.textoBotao}>+</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.apostas}>
+          <TouchableOpacity style={styles.aposta} onPress={() => adicionarPontos('nos', 3)}>
+            <Text style={styles.textoAposta}>Truco (3)</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.aposta} onPress={() => adicionarPontos('nos', 6)}>
+            <Text style={styles.textoAposta}>Seis (6)</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.aposta} onPress={() => adicionarPontos('nos', 9)}>
+            <Text style={styles.textoAposta}>Nove (9)</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.aposta} onPress={() => adicionarPontos('nos', 12)}>
+            <Text style={styles.textoAposta}>Doze (12)</Text>
           </TouchableOpacity>
         </View>
       </View>
 
-      {/* Time Eles */}
-      <View style={styles.timeContainer}>
+      {/* ELES */}
+      <View style={styles.card}>
         <Text style={styles.nomeTime}>Eles</Text>
         <Text style={styles.pontos}>{eles}</Text>
 
-        <View style={styles.botoes}>
-          <TouchableOpacity
-            style={styles.botao}
-            onPress={() => setEles(eles - 1)}
-          >
+        <View style={styles.botoesLinha}>
+          <TouchableOpacity style={styles.botao} onPress={() => setEles(eles - 1)}>
             <Text style={styles.textoBotao}>-</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.botao}
-            onPress={() => setEles(eles + 1)}
-          >
+          <TouchableOpacity style={styles.botao} onPress={() => setEles(eles + 1)}>
             <Text style={styles.textoBotao}>+</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.apostas}>
+          <TouchableOpacity style={styles.aposta} onPress={() => adicionarPontos('eles', 3)}>
+            <Text style={styles.textoAposta}>Truco (3)</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.aposta} onPress={() => adicionarPontos('eles', 6)}>
+            <Text style={styles.textoAposta}>Seis (6)</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.aposta} onPress={() => adicionarPontos('eles', 9)}>
+            <Text style={styles.textoAposta}>Nove (9)</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.aposta} onPress={() => adicionarPontos('eles', 12)}>
+            <Text style={styles.textoAposta}>Doze (12)</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -59,34 +91,63 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#0f172a',
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 20,
   },
   titulo: {
-    fontSize: 28,
-    marginBottom: 30,
+    fontSize: 30,
+    color: '#fff',
+    marginBottom: 20,
+    fontWeight: 'bold',
   },
-  timeContainer: {
+  card: {
+    backgroundColor: '#1e293b',
+    width: '100%',
+    padding: 20,
+    borderRadius: 12,
+    marginBottom: 20,
     alignItems: 'center',
-    marginBottom: 30,
   },
   nomeTime: {
     fontSize: 22,
+    color: '#38bdf8',
+    fontWeight: 'bold',
   },
   pontos: {
-    fontSize: 40,
+    fontSize: 48,
+    color: '#fff',
     marginVertical: 10,
   },
-  botoes: {
+  botoesLinha: {
     flexDirection: 'row',
+    marginBottom: 10,
   },
   botao: {
-    backgroundColor: '#ddd',
-    padding: 15,
+    backgroundColor: '#334155',
+    padding: 12,
     marginHorizontal: 10,
     borderRadius: 8,
   },
   textoBotao: {
-    fontSize: 24,
+    color: '#fff',
+    fontSize: 22,
+  },
+  apostas: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  aposta: {
+    backgroundColor: '#22c55e',
+    padding: 8,
+    borderRadius: 6,
+    margin: 5,
+  },
+  textoAposta: {
+    color: '#000',
+    fontSize: 14,
+    fontWeight: 'bold',
   },
 });
