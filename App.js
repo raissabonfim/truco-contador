@@ -32,6 +32,20 @@ export default function App() {
     }
   };
 
+  // 🔄 Reiniciar (zera pontos)
+  const reiniciarPartida = () => {
+    setNos(0);
+    setEles(0);
+  };
+
+  // 🆕 Novo jogo (zera tudo)
+  const novoJogo = () => {
+    setNos(0);
+    setEles(0);
+    setVitoriasNos(0);
+    setVitoriasEles(0);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>Marcador de Truco</Text>
@@ -107,6 +121,17 @@ export default function App() {
 
         <Text style={styles.vitorias}>Vitórias: {vitoriasEles}</Text>
       </View>
+
+      {/* CONTROLES */}
+      <View style={styles.controles}>
+        <TouchableOpacity style={styles.botaoControle} onPress={reiniciarPartida}>
+          <Text style={styles.textoControle}>Reiniciar</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.botaoControle} onPress={novoJogo}>
+          <Text style={styles.textoControle}>Novo Jogo</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -177,6 +202,20 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: '#facc15',
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  controles: {
+    flexDirection: 'row',
+    marginTop: 10,
+  },
+  botaoControle: {
+    backgroundColor: '#ef4444',
+    padding: 12,
+    borderRadius: 8,
+    marginHorizontal: 10,
+  },
+  textoControle: {
+    color: '#fff',
     fontWeight: 'bold',
   },
 });
