@@ -11,7 +11,7 @@ export default function App() {
 
       {/* Time Nós */}
       <View style={styles.timeContainer}>
-        <Text style={styles.nomeTime}>Nós</Text>
+        <Text style={styles.nomeTime}>Nó</Text>
         <Text style={styles.pontos}>{nos}</Text>
 
         <View style={styles.botoes}>
