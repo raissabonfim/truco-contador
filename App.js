@@ -5,11 +5,30 @@ export default function App() {
   const [nos, setNos] = useState(0);
   const [eles, setEles] = useState(0);
 
+  const [vitoriasNos, setVitoriasNos] = useState(0);
+  const [vitoriasEles, setVitoriasEles] = useState(0);
+
+  const verificarVitoria = (pontosNos, pontosEles) => {
+    if (pontosNos >= 12) {
+      setVitoriasNos(vitoriasNos + 1);
+      setNos(0);
+      setEles(0);
+    } else if (pontosEles >= 12) {
+      setVitoriasEles(vitoriasEles + 1);
+      setNos(0);
+      setEles(0);
+    }
+  };
+
   const adicionarPontos = (time, pontos) => {
     if (time === 'nos') {
-      setNos(nos + pontos);
+      const novo = nos + pontos;
+      setNos(novo);
+      verificarVitoria(novo, eles);
     } else {
-      setEles(eles + pontos);
+      const novo = eles + pontos;
+      setEles(novo);
+      verificarVitoria(nos, novo);
     }
   };
 
@@ -49,6 +68,8 @@ export default function App() {
             <Text style={styles.textoAposta}>Doze (12)</Text>
           </TouchableOpacity>
         </View>
+
+        <Text style={styles.vitorias}>Vitórias: {vitoriasNos}</Text>
       </View>
 
       {/* ELES */}
@@ -83,6 +104,8 @@ export default function App() {
             <Text style={styles.textoAposta}>Doze (12)</Text>
           </TouchableOpacity>
         </View>
+
+        <Text style={styles.vitorias}>Vitórias: {vitoriasEles}</Text>
       </View>
     </View>
   );
@@ -148,6 +171,12 @@ const styles = StyleSheet.create({
   textoAposta: {
     color: '#000',
     fontSize: 14,
+    fontWeight: 'bold',
+  },
+  vitorias: {
+    marginTop: 10,
+    color: '#facc15',
+    fontSize: 16,
     fontWeight: 'bold',
   },
 });
